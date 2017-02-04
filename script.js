@@ -3,6 +3,13 @@
    var attempts = 0;
    var maxGuesses = 10;
 
+        function gameEnded() {
+            document.getElementById('newGameButton').style.display = 'inline';
+            document.getElementById('easyBtn').style.display = 'none';
+            document.getElementById('hardBtn').style.display = 'none';
+            document.getElementById('inputBox').setAttribute('readonly', 'readonly');
+        }
+
         function easyMode() {
             maxGuesses = 10;
             document.getElementById('easyBtn').className = 'activeButton';
@@ -43,15 +50,23 @@
                     document.getElementById('textOutput').innerHTML = 'Your guess is too low.';
                     document.getElementById('inputBox').value = "";
                 } else {
-                    document.getElementById('textOutput').innerHTML = 'Correct!';
+                    document.getElementById('textOutput').innerHTML = 'Correct! You got it in ' +attempts+ ' attempts';
+                    document.getElementById('container').style.backgroundColor = 'green';
+                    gameEnded();
                 }
             } else {
                 if(userGuess > computerGuess) {
-                    document.getElementById('textOutput').innerHTML = 'You lose!';
+                    document.getElementById('textOutput').innerHTML = 'You lose!' + '<br> The number was ' + computerGuess;
+                    document.getElementById('container').style.backgroundColor = '#e82c4e';
+                    gameEnded();
                 } else if (userGuess < computerGuess) {
-                    document.getElementById('textOutput').innerHTML = 'You lose!';
+                    document.getElementById('textOutput').innerHTML = 'You lose!' + '<br> The number was ' + computerGuess;
+                     document.getElementById('container').style.backgroundColor = '#e82c4e';
+                    gameEnded();
                 } else {
-                    document.getElementById('textOutput').innerHTML = 'Correct!';
+                    document.getElementById('textOutput').innerHTML = 'Correct! You got it in ' +attempts+ ' attempts';
+                    document.getElementById('container').style.backgroundColor = 'green';
+                    gameEnded();
                 }
             }
         }
