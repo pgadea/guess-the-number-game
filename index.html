@@ -13,13 +13,17 @@
         <div class="panel">   
             <h2>I have a random number <br>between 1-100</h2>
             <h3>Dare to guess?</h3><hr>
+
+            <p>Select difficulty setting:</p>
+            <button id="easyBtn" onclick="easyMode()" class="">Easy: Guess in 10 attempts (default)</button>
+            <button id="hardBtn" onclick="hardMode()" class="">Hard: Guess in 5 attempts</button>
             <button onclick="newGame()">NEW GAME</button>
         </div>
 
         <div class="panel">
             <h3 id="textOutput">Enter your guess below &amp; press enter</h3>
             <input type="number" id="inputBox" onchange="compareGuess()">
-            <p>Number of previous attempts: <span>0</span></p>
+            <p>Number of previous attempts: <span id="attempts"></span></p>
         </div>
 
         <div class="panel">
@@ -28,38 +32,7 @@
         </div>
     </div>
     
-    <script>
-        var computerGuess;
-        var userGuessLog = [];
-
-        function newGame() {
-            window.location.reload();
-        }
-
-        function init() {
-            computerGuess = Math.floor(Math.random() * 100 + 1);
-            // console.log(computerGuess);
-        }
-
-        function compareGuess() {
-            var userGuess = " " + document.getElementById('inputBox').value;
-            // console.log(userGuess);
-            userGuessLog.push(userGuess);
-            // console.log(userGuessLog);
-            document.getElementById('guessLog').innerHTML = userGuessLog;
-
-            if(userGuess > computerGuess) {
-                document.getElementById('textOutput').innerHTML = 'Your guess is too high.';
-                document.getElementById('inputBox').value = "";
-            } else if (userGuess < computerGuess) {
-                document.getElementById('textOutput').innerHTML = 'Your guess is too low.';
-                document.getElementById('inputBox').value = "";
-            } else {
-                document.getElementById('textOutput').innerHTML = 'Correct!';
-            }
-        }
-
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
